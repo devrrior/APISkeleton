@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>api</artifactId>
+    <artifactId>APISkeleton</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>api</name>
-    <description>api</description>
+    <name>APISkeleton</name>
+    <description>APISkeleton</description>
     <properties>
         <java.version>17</java.version>
         <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
