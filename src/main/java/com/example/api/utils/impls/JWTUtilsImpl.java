@@ -46,6 +46,14 @@ public class JWTUtilsImpl implements IJWTUtils {
     }
 
     @Override
+    public Map<String, Object> getClaimsFromToken(String token) {
+        return Jwts.parser()
+                .build()
+                .parseSignedClaims(token)
+                .getPayload();
+    }
+
+    @Override
     public Boolean isTokenValid(String token, JWTType tokenType) {
         String secretKey = getTokenSecretKey(tokenType);
 
