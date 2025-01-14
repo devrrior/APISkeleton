@@ -31,7 +31,7 @@ public class JWTVerifierFilter extends OncePerRequestFilter {
         String token = getJWTFromRequest(request);
 
         if (StringUtils.hasText(token) && jwtUtils.isTokenValid(token, JWTType.ACCESS_TOKEN)) {
-            String username = jwtUtils.getSubjectFromToken(token);
+            String username = jwtUtils.getSubjectFromToken(token, JWTType.ACCESS_TOKEN);
             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 
             UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());

@@ -38,16 +38,22 @@ public class JWTUtilsImpl implements IJWTUtils {
     }
 
     @Override
-    public String getSubjectFromToken(String token) {
+    public String getSubjectFromToken(String token, JWTType tokenType) {
+        String secretKey = getTokenSecretKey(tokenType);
+
         return Jwts.parser()
+                .verifyWith(Keys.hmacShaKeyFor(secretKey.getBytes()))
                 .build()
                 .parseSignedClaims(token)
                 .getPayload().getSubject();
     }
 
     @Override
-    public Map<String, Object> getClaimsFromToken(String token) {
+    public Map<String, Object> getClaimsFromToken(String token, JWTType tokenType) {
+        String secretKey = getTokenSecretKey(tokenType);
+
         return Jwts.parser()
+                .verifyWith(Keys.hmacShaKeyFor(secretKey.getBytes()))
                 .build()
                 .parseSignedClaims(token)
                 .getPayload();

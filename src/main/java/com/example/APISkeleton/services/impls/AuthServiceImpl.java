@@ -72,8 +72,8 @@ public class AuthServiceImpl implements IAuthService {
             throw new InvalidCredentialsException();
         }
 
-        String email = jwtUtils.getSubjectFromToken(request.getRefreshToken());
-        Map<String, Object> claims = jwtUtils.getClaimsFromToken(request.getRefreshToken());
+        String email = jwtUtils.getSubjectFromToken(request.getRefreshToken(), JWTType.REFRESH_TOKEN);
+        Map<String, Object> claims = jwtUtils.getClaimsFromToken(request.getRefreshToken(), JWTType.REFRESH_TOKEN);
 
         String accessToken = jwtUtils.generateToken(email, claims, JWTType.ACCESS_TOKEN);
         String refreshToken = jwtUtils.generateToken(email, null, JWTType.REFRESH_TOKEN);
